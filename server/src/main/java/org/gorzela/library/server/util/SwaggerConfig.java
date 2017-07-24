@@ -20,7 +20,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-        ApiInfo info = new ApiInfoBuilder().description("Rest test api").title("Rest 1").build();
+        ApiInfo info = new ApiInfoBuilder().description("Server for my thesis application").title("Rest library server").build();
 
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(info)
                 .select()
