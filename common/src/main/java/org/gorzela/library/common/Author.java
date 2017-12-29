@@ -24,12 +24,12 @@ class Author {
 
     @Id
     @GeneratedValue
-    @Column(name="idAuthors")
-    private int idAuthor;
+    @Column(name="idauthors")
+    private int authorId;
     @NotBlank
-    @Column(name="FirstName")
+    @Column(name="firstname")
     private String firstName;
     @NotBlank
-    @Column(name="SecondName")
+    @Column(name="secondname")
     private  String lastName;
 }

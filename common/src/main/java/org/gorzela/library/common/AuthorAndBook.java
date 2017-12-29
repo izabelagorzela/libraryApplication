@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by Iza on 2017-07-08.
@@ -19,10 +21,13 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="BooksAuthors")
-public class AuthorAndBook {
+public class AuthorAndBook implements Serializable {
 
-    @Column(name="Authors_idAuthors")
-    private int idAuthor;
-    @Column(name="Books_idBooks")
-    private int idBook;
+    @Id
+    @Column(name="authors_idauthors")
+    private int authorId;
+
+    @Id
+    @Column(name="books_idbooks")
+    private int bookId;
 }

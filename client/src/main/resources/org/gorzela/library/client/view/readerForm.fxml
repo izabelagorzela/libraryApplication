@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.ReaderFormController">
+<children>
+    <Label layoutX="92.0" layoutY="126.0" text="Twoje wypożyczenia">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+    <Label layoutX="92.0" layoutY="306.0" text="Twoje rezerwacje">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+    <Label layoutX="92.0" layoutY="490.0" text="Twoje opłaty">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+    <Button fx:id="closeReaderAccountButton" layoutX="488.0" layoutY="626.0" mnemonicParsing="false" onAction="#closeReaderAccountAction" prefHeight="40.0" prefWidth="90.0" text="Anuluj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+    <Button fx:id="prolongButton" layoutX="859.0" layoutY="231.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Prolonguj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+    <Button fx:id="cancelReservationButton" layoutX="859.0" layoutY="409.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Usuń">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+    <TableView fx:id="rentalsTableView" layoutX="280.0" layoutY="115.0" prefHeight="150.0" prefWidth="482.0">
+        <columns>
+            <TableColumn fx:id="rentalsTableAuthorColumn" minWidth="120.0" prefWidth="120.0" text="Autor" />
+            <TableColumn fx:id="rentalsTableTitleColumn" minWidth="120.0" prefWidth="120.0" text="Tytuł" />
+            <TableColumn fx:id="rentalsTableDateFromColumn" minWidth="120.0" prefWidth="120.0" text="Data od:" />
+            <TableColumn fx:id="rentalsTableDateToColumn" minWidth="120.0" prefWidth="120.0" text="Data do:" />
+        </columns>
+    </TableView>
+    <TableView fx:id="readerReservationTableView" layoutX="280.0" layoutY="293.0" prefHeight="150.0" prefWidth="482.0">
+        <columns>
+            <TableColumn fx:id="reservationTableAuthorColumn" minWidth="120.0" prefWidth="120.0" text="Autor" />
+            <TableColumn fx:id="reservationTableTitleColumn" minWidth="120.0" prefWidth="120.0" text="Tytuł" />
+            <TableColumn fx:id="reservationTableDateFromColumn" minWidth="120.0" prefWidth="120.0" text="Data od:" />
+            <TableColumn fx:id="reservationTableDateToColumn" minWidth="120.0" prefWidth="120.0" text="Data do:" />
+        </columns>
+    </TableView>
+    <Label fx:id="readerPaymentLabel" layoutX="280.0" layoutY="486.0" prefHeight="25.0" prefWidth="93.0" text="13 złotych">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+</children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.MainFormController">
+   <children>
+      <MenuBar layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="closeApplicationMenu" mnemonicParsing="false" onAction="#closeApplicationAction" text="Zamknij" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="catalogButton" layoutX="155.0" layoutY="163.0" mnemonicParsing="false" onAction="#openCatalogForm" prefHeight="40.0" prefWidth="90.0" text="Katalog">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="readerAccountButton" layoutX="468.0" layoutY="163.0" mnemonicParsing="false" onAction="#openReaderAccountForm" prefHeight="40.0" prefWidth="90.0" text="Konto czytelnika">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="ourStatisticsButton" layoutX="773.0" layoutY="163.0" mnemonicParsing="false" onAction="#openStatisticsForm" prefHeight="40.0" prefWidth="90.0" text="Nasze statystyki">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button disable="true" layoutX="773.0" layoutY="636.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Wyloguj">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Label fx:id="informationLabel" layoutX="420.0" layoutY="648.0" prefHeight="17.0" prefWidth="129.0" />
+      <Label fx:id="currentReaderLabel" layoutX="586.0" layoutY="648.0" prefHeight="17.0" prefWidth="62.0" />
+   </children>
+</AnchorPane>

@@ -23,36 +23,46 @@ public class Reader {
 
     @Id
     @GeneratedValue
-    @Column(name="idReaders")
-    private int idReader;
+    @Column(name="idreaders")
+    private Long readerId;
+
     @NotBlank
-    @Column(name="FirstName")
+    @Column(name="firstname")
     private String firstName;
+
     @NotBlank
-    @Column(name="LastName")
+    @Column(name="lastname")
     private String lastName;
+
     @NotBlank
-    @Column(name="Login")
+    @Column(name="login")
     private String login;
+
     @NotBlank
-    @Column(name="Password")
+    @Column(name="password")
     private String password;
+
     @NotBlank
-    @Column(name="Street")
+    @Column(name="street")
     private String street;
+
     @NotBlank
-    @Column(name="Postcode")
+    @Column(name="postcode")
     private String postcode;
+
     @NotBlank
-    @Column(name="City")
+    @Column(name="city")
     private String city;
+
     @NotBlank
-    @Column(name="Country")
+    @Column(name="country")
     private String country;
+
     @Email
-    @Column(name="Mail")
+    @Column(name="mail")
     private String mail;
-    @Column(name="Telephone")
+
+    @Column(name="telephone")
     private String telephone;
 
 

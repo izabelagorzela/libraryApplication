@@ -22,11 +22,11 @@ public class Alias {
 
     @Id
     @GeneratedValue
-    @Column(name="idAliases")
-    private int idAlias;
-    @Column(name="FirstName")
+    @Column(name="idaliases")
+    private int aliasId;
+    @Column(name="firstname")
     private String firstName;
     @NotBlank
-    @Column(name="LastName")
+    @Column(name="lastname")
     private String lastName;
 }

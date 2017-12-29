@@ -21,13 +21,14 @@ public class Reservation {
 
     @Id
     @GeneratedValue
-    private int idReservation;
-    @Column(name="DateFrom")
+    @Column(name="reservationid")
+    private int reservationId;
+    @Column(name="datefrom")
     private int dateFrom;
-    @Column(name="DateTo")
+    @Column(name="dateto")
     private int dateTo;
-    @Column(name="Readers_idReaders")
-    private int idReader;
-    @Column(name="Books_idBooks")
-    private int idBook;
+    @Column(name="readers_idreaders")
+    private int readerId;
+    @Column(name="books_idbooks")
+    private int bookId;
 }

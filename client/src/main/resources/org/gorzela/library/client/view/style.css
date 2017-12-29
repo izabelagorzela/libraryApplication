@@ -1,0 +1,173 @@
+.root
+{
+    -fx-background-image: url("image.jpg");
+    -fx-background-color: #FFF5EE;
+    -fx-background-repeat: no-repeat;
+}
+
+.label
+{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #B0B0B0;
+}
+
+.button
+{
+	-fx-background-color:
+        linear-gradient(#D3D3D3, #FFFFE0),
+        radial-gradient(center 50% -40%, radius 200%, #D3D3D3 45%, #FFFFE0 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #104060;
+}
+
+.button:hover
+{
+	-fx-background-color:
+        linear-gradient(#D3D3D3, #FFE4B5),
+        radial-gradient(center 50% -40%, radius 200%, #D3D3D3 45%, #FFE4B5 50%);
+    -fx-text-fill: #103550;
+}
+
+.button:pressed
+{
+	-fx-background-color: #FFF5EE;
+	-fx-text-fill: #60e0ff;
+}
+
+.menu-bar
+{
+    -fx-background-color: #CD853F;
+}
+
+.menu-bar .label
+{
+    -fx-font-size: 18 pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #dedede;
+}
+
+.menu:hover
+{
+    -fx-background-color: #bc784e;
+}
+
+.menu:pressed
+{
+    -fx-background-color: #bc784e;
+}
+
+.menu-item .label
+{
+    -fx-font-size: 18 pt;
+    -fx-background-color: #bc784e;
+}
+
+.menu-button,
+.menu-item
+{
+    -fx-background-color: #bc784e;
+}
+
+.context-menu
+{
+    -fx-background-color: #CD853F;
+}
+
+.text-field
+{
+    -fx-background-color: #FFFFF0;
+}
+
+.table-view
+{
+    -fx-base: #A0522D;
+    -fx-control-inner-background: #CD853F;
+    -fx-background-color: #FFFFF0;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected
+{
+    -fx-background-color: -fx-focus-color;
+}
+
+#readerPaymentLabel
+{
+     -fx-font-size: 13px;
+     -fx-font-weight: bold;
+     -fx-text-fill: #A0522D;
+}
+
+.combo-box-base
+{
+    -fx-background-color: #FFFFF0;
+}
+
+.combo-box .cell:selected
+{
+    -fx-font-weight: bold;
+    -fx-text-fill: #A0522D;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: #A0522D;
+}
+
+.combo-box .arrow
+{
+    -fx-background-color: black;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background-color: #FFF5EE;
+}
+
+.combo-box-base:editable
+{
+    -fx-background-color: #FF0;
+}
+
+.combo-box-base > .arrow-button
+{
+   -fx-background-color: white;
+   -fx-padding: 05;
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell
+{
+    -fx-padding: 1 10;
+    -fx-background: #FFE4B5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

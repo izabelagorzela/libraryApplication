@@ -21,17 +21,17 @@ public class Payment {
 
     @Id
     @GeneratedValue
-    @Column(name="idPayments")
-    private int idPayment;
-    @Column(name="Value")
+    @Column(name="idpayments")
+    private int paymentId;
+    @Column(name="value")
     private double value;
-    @Column(name="DateFrom")
+    @Column(name="datefrom")
     private int dateFrom;
-    @Column(name="DateTo")
+    @Column(name="dateto")
     private int dateTo;
-    @Column(name="Readers_idReaders")
-    private int idReader;
-    @Column(name="Books_idBooks")
-    private int idBook;
+    @Column(name="readers_idreaders")
+    private int readerId;
+    @Column(name="books_idbooks")
+    private int bookId;
 
 }

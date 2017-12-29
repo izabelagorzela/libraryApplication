@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -21,8 +22,9 @@ import javax.persistence.Table;
 @Table(name="AuthorsAliases")
 public class AuthorAndAlias {
 
-    @Column(name="Authors_idAuthors")
-    private int idAuthor;
-    @Column(name="Aliases_idAliases")
-    private int idAlias;
+    @Id
+    @Column(name="authors_idauthors")
+    private int authorId;
+    @Column(name="aliases_idaliases")
+    private int aliasId;
 }

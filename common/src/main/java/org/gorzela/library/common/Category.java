@@ -22,9 +22,9 @@ public class Category {
 
     @Id
     @GeneratedValue
-    @Column(name="idCategories")
-    private int idCategory;
+    @Column(name="idcategories")
+    private int categoryId;
     @NotBlank
-    @Column(name="Name")
+    @Column(name="name")
     private String name;
 }

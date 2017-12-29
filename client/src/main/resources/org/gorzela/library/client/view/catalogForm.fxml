@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.CatalogFormController">
+   <children>
+      <Label layoutX="256.0" layoutY="197.0" prefHeight="17.0" prefWidth="85.0" text="Fraza">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <TextField fx:id="phraseTextField" layoutX="366.0" layoutY="193.0" prefHeight="25.0" prefWidth="149.0" />
+      <ComboBox fx:id="phraseKindComboBox" layoutX="551.0" layoutY="193.0" prefWidth="150.0" promptText="Tytuł" visibleRowCount="3" />
+      <Button fx:id="searchButton" layoutX="619.0" layoutY="298.0" mnemonicParsing="false" onAction="#openSearchResultFormAction" prefHeight="40.0" prefWidth="90.0" text="Szukaj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="closeCatalogFormButton" layoutX="776.0" layoutY="298.0" mnemonicParsing="false" onAction="#closeCatalogFormAction" prefHeight="40.0" prefWidth="90.0" text="Anuluj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

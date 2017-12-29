@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.SearchResultFormController">
+   <children>
+      <Button fx:id="reservationButton" layoutX="716.0" layoutY="529.0" mnemonicParsing="false" onAction="#reserveAction" prefHeight="40.0" prefWidth="90.0" text="Rezerwuj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="closeSearchResultFormButton" layoutX="882.0" layoutY="529.0" mnemonicParsing="false" onAction="#closeSearchResultFormAction" prefHeight="40.0" prefWidth="90.0" text="Anuluj">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <TableView fx:id="searchResultTableView" layoutX="78.0" layoutY="121.0" prefHeight="350.0" prefWidth="720.0">
+         <columns>
+            <TableColumn fx:id="searchResultTableAuthorColumn" minWidth="120.0" prefWidth="120.0" text="Autor" />
+            <TableColumn fx:id="searchResultTableAliasColumn" minWidth="120.0" prefWidth="120.0" text="Autor-pseudonim " />
+            <TableColumn fx:id="searchResultTableTitleColumn" minWidth="120.0" prefWidth="120.0" text="Tytuł" />
+            <TableColumn fx:id="searchResultTableStateColumn" minWidth="120.0" prefWidth="120.0" text="Stan" />
+            <TableColumn fx:id="searchResultTableDateFromColumn" minWidth="120.0" prefWidth="120.0" text="Data od:" />
+            <TableColumn fx:id="searchResultTableDateToColumn" minWidth="120.0" prefWidth="120.0" text="Data do:" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

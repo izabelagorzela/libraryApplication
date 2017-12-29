@@ -22,19 +22,19 @@ public class Book {
 
     @Id
     @GeneratedValue
-    @Column(name="idBooks")
-    private int idBook;
+    @Column(name="idbooks")
+    private int bookId;
     @NotBlank
-    @Column(name="Title")
+    @Column(name="title")
     private String title;
     @NotBlank
-    @Column(name="ISBN")
+    @Column(name="isbn")
     private String isbn;
     @NotBlank
-    @Column(name="PublishingHouse")
+    @Column(name="publishinghouse")
     private String publishingHouse;
-    @Column(name="PublicationYear")
+    @Column(name="publicationyear")
     private int publicationYear;
-    @Column(name="Categories_idCategories")
-    private int idCategory;
+    @Column(name="categories_idcategories")
+    private int categoryId;
 }
