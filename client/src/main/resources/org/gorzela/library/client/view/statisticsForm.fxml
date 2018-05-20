@@ -8,10 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.StatisticsFormController">
    <children>
-      <TableView fx:id="statisticsTableView" layoutX="125.0" layoutY="188.0" prefHeight="100.0" prefWidth="240.0">
+      <TableView fx:id="statisticsTableView" layoutX="125.0" layoutY="188.0" prefHeight="106.0" prefWidth="310.0">
         <columns>
           <TableColumn fx:id="statisticsTableAuthorColumn" minWidth="120.0" prefWidth="120.0" text="Author" />
-            <TableColumn fx:id="statisticsTableTitleColumn" minWidth="120.0" prefWidth="120.0" text="Tytuł" />
+            <TableColumn fx:id="statisticsTableTitleColumn" minWidth="180.0" prefWidth="180.0" text="Tytuł" />
         </columns>
       </TableView>
       <Button fx:id="closeStatisticsFormButton" layoutX="474.0" layoutY="621.0" mnemonicParsing="false" onAction="#closeStatisticsFormAction" prefHeight="40.0" prefWidth="90.0" text="Anuluj">

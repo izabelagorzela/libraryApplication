@@ -23,11 +23,11 @@
          <font>
             <Font size="10.0" />
          </font></Button>
-    <Button fx:id="prolongButton" layoutX="859.0" layoutY="231.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Prolonguj">
+    <Button fx:id="prolongButton" layoutX="859.0" layoutY="231.0" mnemonicParsing="false" onAction="#prolongBookAction" prefHeight="40.0" prefWidth="90.0" text="Prolonguj">
          <font>
             <Font size="10.0" />
          </font></Button>
-    <Button fx:id="cancelReservationButton" layoutX="859.0" layoutY="409.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Usuń">
+    <Button fx:id="cancelReservationButton" layoutX="859.0" layoutY="409.0" mnemonicParsing="false" onAction="#cancelReservationOnAction" prefHeight="40.0" prefWidth="90.0" text="Usuń">
          <font>
             <Font size="10.0" />
          </font></Button>
@@ -47,7 +47,7 @@
             <TableColumn fx:id="reservationTableDateToColumn" minWidth="120.0" prefWidth="120.0" text="Data do:" />
         </columns>
     </TableView>
-    <Label fx:id="readerPaymentLabel" layoutX="280.0" layoutY="486.0" prefHeight="25.0" prefWidth="93.0" text="13 złotych">
+    <Label fx:id="readerPaymentLabel" layoutX="280.0" layoutY="486.0" prefHeight="25.0" prefWidth="93.0">
          <font>
             <Font size="11.0" />
          </font></Label>

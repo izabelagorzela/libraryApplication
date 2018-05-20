@@ -4,8 +4,5 @@ import de.felixroske.jfxsupport.AbstractFxmlView;
 import de.felixroske.jfxsupport.FXMLView;
 
 @FXMLView(css={"style.css"})
-public class ReaderFormView extends AbstractFxmlView{
+public class SelectedItemStateFormView extends AbstractFxmlView {
 }
-
-
-

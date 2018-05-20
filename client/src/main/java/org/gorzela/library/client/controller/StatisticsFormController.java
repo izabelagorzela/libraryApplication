@@ -6,29 +6,52 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
+import org.gorzela.library.client.Data.LibraryData;
+import org.gorzela.library.common.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.net.URISyntaxException;
 
 @FXMLController
-public class StatisticsFormController {
+public class StatisticsFormController extends AbstractFormController {
+
+    @Autowired
+    private LibraryData libraryData;
 
     @FXML
-    private TableView<?> statisticsTableView;
+    private TableView<Book> statisticsTableView;
+
+    @FXML
+    private TableColumn<Book, String> statisticsTableAuthorColumn;
+
+    @FXML
+    private TableColumn<Book, String> statisticsTableTitleColumn;
 
     @FXML
     private Button closeStatisticsFormButton;
 
     @FXML
-    private TableColumn<?, ?> statisticsTableAuthorColumn;
+    public void closeStatisticsFormAction(ActionEvent event) {
 
-    @FXML
-    private TableColumn<?, ?> statisticsTableTitleColumn;
+        closeWindow((Button)event.getSource());
+    }
 
-    @FXML
-    void closeStatisticsFormAction(ActionEvent event) {
+    public void setStatisticsTable() throws URISyntaxException {
 
-        Stage stage = (Stage) closeStatisticsFormButton.getScene().getWindow();
-        stage.close();
+        statisticsTableTitleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+        statisticsTableAuthorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("authorsNames"));
+        statisticsTableView.setItems(libraryData.getStatisticsData());
+    }
+
+    @Override
+    public boolean setWindow() throws URISyntaxException {
+
+        setStatisticsTable();
+        return true;
 
     }
 
 }
+
+

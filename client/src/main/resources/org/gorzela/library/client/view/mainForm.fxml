@@ -29,12 +29,12 @@
          <font>
             <Font size="10.0" />
          </font></Button>
-      <Button disable="true" layoutX="773.0" layoutY="636.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Wyloguj">
+      <Button fx:id="signOffButton" disable="true" layoutX="773.0" layoutY="636.0" mnemonicParsing="false" onAction="#signOffAction" prefHeight="40.0" prefWidth="90.0" text="Wyloguj">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Label fx:id="informationLabel" layoutX="420.0" layoutY="648.0" prefHeight="17.0" prefWidth="129.0" />
-      <Label fx:id="currentReaderLabel" layoutX="586.0" layoutY="648.0" prefHeight="17.0" prefWidth="62.0" />
+      <Label fx:id="informationLabel" layoutX="420.0" layoutY="648.0" prefHeight="17.0" prefWidth="177.0" />
+      <Label fx:id="currentReaderLabel" layoutX="572.0" layoutY="648.0" prefHeight="17.0" prefWidth="90.0" />
    </children>
 </AnchorPane>

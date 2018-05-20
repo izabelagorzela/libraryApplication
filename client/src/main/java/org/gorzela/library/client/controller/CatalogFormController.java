@@ -4,12 +4,11 @@ import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import org.gorzela.library.client.util.BookSearchTrio;
+import org.gorzela.library.client.util.ErrorInformation;
 import org.gorzela.library.client.view.SearchResultFormView;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +16,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @FXMLController
-public class CatalogFormController implements Initializable {
+public class CatalogFormController extends AbstractFormController implements Initializable{
+
+    @Autowired
+    private BookSearchTrio bookSearchTrio;
+
+    @Autowired
+    private ErrorInformation errorInformation;
+
+    @Autowired
+    private SearchResultFormView searchResultWindow;
+
+    @Autowired
+    private SearchResultFormController searchResultFormController;
+
     @FXML
     private Button searchButton;
 
@@ -30,25 +42,30 @@ public class CatalogFormController implements Initializable {
     @FXML
     private TextField phraseTextField;
 
-    @Autowired
-    private SearchResultFormView searchResultWindow;
-
     @FXML
-    void openSearchResultFormAction(ActionEvent event) {
+    public void closeCatalogFormAction(ActionEvent event) {
 
-        Stage stage = new Stage();
-        Scene scene = (searchResultWindow.getView().getScene() == null ? new Scene(searchResultWindow.getView()) : searchResultWindow.getView().getScene());
-        stage.setScene(scene);
-        stage.setTitle("Wyniki wyszukiwania");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        closeWindow((Button)event.getSource());
     }
 
     @FXML
-    void closeCatalogFormAction(ActionEvent event) {
+    public void openSearchResultFormAction(ActionEvent event) {
 
-        Stage stage = (Stage) closeCatalogFormButton.getScene().getWindow();
-        stage.close();
+        if (phraseTextField.getText().equals("") == true) {
+
+            errorInformation.showInformation("Błąd", "Nie podałeś frazy według której ma być wykonane wyszukiwanie... ");
+        }
+        else {
+            bookSearchTrio.setPhrasePart(phraseTextField.getText());
+            bookSearchTrio.setPhraseType(phraseKindComboBox.getSelectionModel().getSelectedItem());
+            createAndShowWindow(searchResultWindow, searchResultFormController, "Wyniki wyszukiwania");
+            resetPhraseTextFields();
+        }
+    }
+
+    public void resetPhraseTextFields() {
+
+        phraseTextField.setText("");
     }
 
     @Override
@@ -56,5 +73,11 @@ public class CatalogFormController implements Initializable {
         phraseKindComboBox.getItems().removeAll(phraseKindComboBox.getItems());
         phraseKindComboBox.getItems().addAll("Tytuł", "Autor", "ISBN");
         phraseKindComboBox.getSelectionModel().select("Tytuł");
+    }
+
+    @Override
+    public boolean setWindow(){
+
+        return true;
     }
 }

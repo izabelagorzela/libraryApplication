@@ -1,13 +1,13 @@
 package org.gorzela.library.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Iza on 2017-07-08.
@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Readers")
@@ -65,7 +66,11 @@ public class Reader {
     @Column(name="telephone")
     private String telephone;
 
+    @NotBlank
+    @Column(name="role")
+    private String role;
 
-
-
+    @NotBlank
+    @Column(name="payment")
+    private double payment;
 }

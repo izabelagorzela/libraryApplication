@@ -1,18 +1,20 @@
 package org.gorzela.library.server.controller;
 
 
+import javafx.collections.ObservableList;
 import lombok.Setter;
 import org.gorzela.library.common.Reader;
+import org.gorzela.library.common.ReaderLoansDTO;
 import org.gorzela.library.server.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,40 +23,52 @@ import java.util.List;
 
 @Setter
 @RestController
-@RequestMapping("/Rest/reader")
+@RequestMapping("/Rest/library/reader")
 public class ReaderController {
 
     @Autowired
     ReaderRepository readerRepository;
 
-    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Reader>> getAllReader(){
-        List<Reader> list = readerRepository.findAll();
-        //System.out.println("call method");
+    @GetMapping("get/one")                                                    //WYKORZYSTANA
+    public ResponseEntity<Reader> getReader() {
+
+        Reader reader = readerRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if(reader == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(reader);
+    }
+
+
+
+
+
+    @GetMapping("get/all")
+    public ResponseEntity<ArrayList<Reader>> getAllReader(){
+        ArrayList<Reader> list = readerRepository.findAll();
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping(value = "/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reader> getReaderByPassword(@PathVariable String password) {
-        Reader reader = readerRepository.findByPassword(password);
-        if(reader != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(reader);
+    //z DTO nie dziala jeszcze
+    @GetMapping("get/loans")
+    public ResponseEntity<List<ReaderLoansDTO>> getReaderLoans(Long readerId) {
+
+        List<ReaderLoansDTO> readerLoans = readerRepository.getReaderLoans(readerId);
+        if(readerLoans == null || readerLoans.size() == 0) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+
+        return ResponseEntity.ok(readerLoans);
     }
 
-    @GetMapping(value = "/authentication", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reader> getReaderByPasswordAndLogin(String password, String login) {
-        Reader reader = readerRepository.findByPasswordAndLogin(password, login);
-        if(reader != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(reader);
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-
+//    @GetMapping(value = "/getPaymentByReaderId", produces = MediaType.APPLICATION_JSON_VALUE)            //WYKORZYSTANA
+//    public ResponseEntity<Payment> getByReaderId(Long readerId) {
+//        Payment payment = paymentRepository.findByReaderId(readerId);
+//        if (payment != null) {
+//            return ResponseEntity.status(HttpStatus.OK).body(payment);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+//        }
+//    }
 }

@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gorzela.library.client.controller.SearchResultFormController">
    <children>
-      <Button fx:id="reservationButton" layoutX="716.0" layoutY="529.0" mnemonicParsing="false" onAction="#reserveAction" prefHeight="40.0" prefWidth="90.0" text="Rezerwuj">
+      <Button fx:id="showSelectedButton" layoutX="716.0" layoutY="529.0" mnemonicParsing="false" onAction="#showSelectedAction" prefHeight="40.0" prefWidth="90.0" text="Pokaż wybraną">
          <font>
             <Font size="10.0" />
          </font></Button>
@@ -15,14 +15,14 @@
          <font>
             <Font size="10.0" />
          </font></Button>
-      <TableView fx:id="searchResultTableView" layoutX="78.0" layoutY="121.0" prefHeight="350.0" prefWidth="720.0">
+      <TableView fx:id="searchResultTableView" layoutX="78.0" layoutY="121.0" prefHeight="214.0" prefWidth="813.0">
          <columns>
-            <TableColumn fx:id="searchResultTableAuthorColumn" minWidth="120.0" prefWidth="120.0" text="Autor" />
-            <TableColumn fx:id="searchResultTableAliasColumn" minWidth="120.0" prefWidth="120.0" text="Autor-pseudonim " />
-            <TableColumn fx:id="searchResultTableTitleColumn" minWidth="120.0" prefWidth="120.0" text="Tytuł" />
-            <TableColumn fx:id="searchResultTableStateColumn" minWidth="120.0" prefWidth="120.0" text="Stan" />
-            <TableColumn fx:id="searchResultTableDateFromColumn" minWidth="120.0" prefWidth="120.0" text="Data od:" />
-            <TableColumn fx:id="searchResultTableDateToColumn" minWidth="120.0" prefWidth="120.0" text="Data do:" />
+            <TableColumn fx:id="searchResultTableAuthorColumn" minWidth="130.0" prefWidth="120.0" text="Autor" />
+            <TableColumn fx:id="searchResultTableAliasColumn" minWidth="130.0" prefWidth="120.0" text="Autor-pseudonim " />
+            <TableColumn fx:id="searchResultTableTitleColumn" minWidth="140.0" prefWidth="120.0" text="Tytuł" />
+            <TableColumn fx:id="searchResultTableCategoryColumn" minWidth="135.0" prefWidth="120.0" text="Kategoria" />
+            <TableColumn fx:id="searchResultTableISBNColumn" minWidth="135.0" prefWidth="120.0" text="ISBN" />
+            <TableColumn fx:id="searchResultTablePublishingHouseColumn" minWidth="145.0" prefWidth="120.0" text="Wydawnictwo" />
          </columns>
       </TableView>
    </children>

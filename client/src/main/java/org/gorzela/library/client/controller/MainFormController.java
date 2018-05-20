@@ -5,19 +5,38 @@ package org.gorzela.library.client.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 //import org.apache.http.client.utils.URIBuilder;
 import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 @FXMLController
-public class MainFormController {
+public class MainFormController extends AbstractFormController {
+
+    @Autowired
+    private StatisticsFormView statisticsWindow;
+
+    @Autowired
+    private StatisticsFormController statisticsController;
+
+    @Autowired
+    private CatalogFormView catalogWindow;
+
+    @Autowired
+    private CatalogFormController catalogController;
+
+    @Autowired
+    private ReaderFormView readerWindow;
+
+    @Autowired
+    private ReaderFormController readerController;
+
+    @Autowired
+    private CurrentReaderProvider currentReaderProvider;
 
     @FXML
     private Button catalogButton;
@@ -29,7 +48,7 @@ public class MainFormController {
     private Button ourStatisticsButton;
 
     @FXML
-    private Button LogOutButton;
+    private Button signOffButton;
 
     @FXML
     private Label informationLabel;
@@ -40,66 +59,57 @@ public class MainFormController {
     @FXML
     private MenuItem closeApplicationMenu;
 
-    //@Autowired
-   //private LoginFormView loginWindow;
+    public void setSignOffButton(boolean buttonState) {
 
-    @Autowired
-    private StatisticsFormView statisticsWindow;
+        signOffButton.setDisable(buttonState);
+    }
 
-    @Autowired
-    private CatalogFormView catalogWindow;
+    public void setLabels(String text1, String text2) {
 
-    @Autowired
-    private ReaderFormView readerWindow;
-
-    @Autowired
-    private CurrentReaderProvider currentReaderProvider;
+        informationLabel.setText(text1);
+        currentReaderLabel.setText(text2);
+    }
 
     @FXML
-    void closeApplicationAction(ActionEvent event) {
+    public void closeApplicationAction(ActionEvent event) {
 
             Platform.exit();
-
     }
 
     @FXML
-    void openReaderAccountForm(ActionEvent event) {
+    public void openReaderAccountForm(ActionEvent event) {
 
-        Stage stage = new Stage();
-        Scene scene = (readerWindow.getView().getScene() == null ? new Scene(readerWindow.getView()) : readerWindow.getView().getScene());
-        stage.setScene(scene);
-        stage.setTitle("Twoje konto");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        if (currentReaderProvider.getCurrentReader() != null) {
 
+            createAndShowWindow(readerWindow, readerController, "Twoje konto");
+        }
     }
 
     @FXML
-    void openStatisticsForm(ActionEvent event) {
+    public void openStatisticsForm(ActionEvent event) {
 
-        Stage stage = new Stage();
-        Scene scene = (statisticsWindow.getView().getScene() == null ? new Scene(statisticsWindow.getView()) : statisticsWindow.getView().getScene());
-        stage.setScene(scene);
-        stage.setTitle("Nasze statystyki");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-
+        createAndShowWindow(statisticsWindow, statisticsController,"Nasze statystyki");
     }
 
     @FXML
-    void openCatalogForm(ActionEvent event) {
+    public void openCatalogForm(ActionEvent event) {
 
-        Stage stage = new Stage();
-        Scene scene = (catalogWindow.getView().getScene() == null ? new Scene(catalogWindow.getView()) : catalogWindow.getView().getScene());
-        stage.setScene(scene);
-        stage.setTitle("Katalog on-line");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        createAndShowWindow(catalogWindow, catalogController,"Katalog on-line");
     }
 
+    @FXML
+    public void signOffAction(ActionEvent event) {
 
+        setLabels("Zostałeś wylogowany", "");
+        signOffButton.setDisable(true);
+        currentReaderProvider.unsetCurrentReader();
+    }
 
+    @Override
+    public boolean setWindow(){
 
+        return true;
+    }
 
 }
 

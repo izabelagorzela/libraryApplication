@@ -19,7 +19,7 @@
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Button fx:id="readerAccountButton" layoutX="459.0" layoutY="273.0" mnemonicParsing="false" onAction="#signIn" prefHeight="40.0" prefWidth="90.0" text="Zaloguj się">
+      <Button fx:id="signInButton" layoutX="459.0" layoutY="273.0" mnemonicParsing="false" onAction="#signIn" prefHeight="40.0" prefWidth="90.0" text="Zaloguj się">
          <font>
             <Font size="10.0" />
          </font></Button>
