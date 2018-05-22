@@ -7,8 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import org.gorzela.library.client.util.BookSearchTrio;
-import org.gorzela.library.client.util.ErrorInformation;
+import org.gorzela.library.client.util.SelectedBook;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.SearchResultFormView;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,10 +19,10 @@ import java.util.ResourceBundle;
 public class CatalogFormController extends AbstractFormController implements Initializable{
 
     @Autowired
-    private BookSearchTrio bookSearchTrio;
+    private SelectedBook selectedBook;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     @Autowired
     private SearchResultFormView searchResultWindow;
@@ -53,11 +53,11 @@ public class CatalogFormController extends AbstractFormController implements Ini
 
         if (phraseTextField.getText().equals("") == true) {
 
-            errorInformation.showInformation("Błąd", "Nie podałeś frazy według której ma być wykonane wyszukiwanie... ");
+            alertInformation.showInformation("Błąd", "Nie podałeś frazy według której ma być wykonane wyszukiwanie... ");
         }
         else {
-            bookSearchTrio.setPhrasePart(phraseTextField.getText());
-            bookSearchTrio.setPhraseType(phraseKindComboBox.getSelectionModel().getSelectedItem());
+            selectedBook.setPhrasePart(phraseTextField.getText());
+            selectedBook.setPhraseType(phraseKindComboBox.getSelectionModel().getSelectedItem());
             createAndShowWindow(searchResultWindow, searchResultFormController, "Wyniki wyszukiwania");
             resetPhraseTextFields();
         }

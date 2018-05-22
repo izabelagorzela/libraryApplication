@@ -1,14 +1,12 @@
 package org.gorzela.library.client.Data;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import lombok.extern.slf4j.Slf4j;
 import org.gorzela.library.client.controller.ReaderFormController;
 import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.security.LibraryRestTemplateFactory;
 import org.gorzela.library.client.security.LibraryUriComponentsFactory;
-import org.gorzela.library.client.util.ErrorInformation;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.util.LibraryDate;
 import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reservation;
@@ -21,8 +19,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 @Component
@@ -32,7 +28,7 @@ public class ReaderData {
     private LibraryRestTemplateFactory restTemplateFactory;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     @Autowired
     private LibraryUriComponentsFactory uriFactory;
@@ -103,7 +99,7 @@ public class ReaderData {
         ResponseEntity<String> entity;
         if (selectedLoan == null) {
 
-            errorInformation.showInformation("Błąd", "Nie wybrałeś żadnej pozycji do prolongaty...");
+            alertInformation.showInformation("Błąd", "Nie wybrałeś żadnej pozycji do prolongaty...");
         } else {
             URI uri = uriFactory.getUri("/loan/update/one", "newDateTo", libraryDate.getProlongedDateAsString(), "loanId", selectedLoan.getLoanId().toString());
             RestTemplate restTemplate = restTemplateFactory.getRestTemplate(currentReaderProvider.getCurrentReader().getLogin(), currentReaderProvider.getCurrentReader().getPassword());
@@ -113,7 +109,7 @@ public class ReaderData {
                 entity = restTemplate.exchange(uri, HttpMethod.PUT, null, String.class);
                 if (entity.getStatusCode() == HttpStatus.NO_CONTENT) {
 
-                    errorInformation.showInformation("Błąd", "To wypożyczenie już nie jest aktualna...nie można go prolongować");
+                    alertInformation.showInformation("Błąd", "To wypożyczenie już nie jest aktualna...nie można go prolongować");
                 }
 
             } catch (Exception ex) {
@@ -130,8 +126,8 @@ public class ReaderData {
         ResponseEntity<String> entity;
         if (selectedReservation == null) {
 
-            errorInformation.showInformation("Błąd", "Nie wybrałeś żadnej rezerwacji do usunięcia...");
-            //errorInformation.showConfirm("Potwierdzenie", "Czy chcesz usunąć wybraną rezerwację...");
+            alertInformation.showInformation("Błąd", "Nie wybrałeś żadnej rezerwacji do usunięcia...");
+            //alertInformation.showConfirm("Potwierdzenie", "Czy chcesz usunąć wybraną rezerwację...");
         }
         else {
 
@@ -143,7 +139,7 @@ public class ReaderData {
                 entity = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
                 if (entity.getStatusCode() == HttpStatus.NO_CONTENT) {
 
-                   errorInformation.showInformation("Błąd", "Ta rezerwacja już nie jest aktualna...nie można jej usunąć");
+                   alertInformation.showInformation("Błąd", "Ta rezerwacja już nie jest aktualna...nie można jej usunąć");
                 }
 
             } catch (Exception ex) {

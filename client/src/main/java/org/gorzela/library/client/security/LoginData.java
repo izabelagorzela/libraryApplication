@@ -1,7 +1,7 @@
 package org.gorzela.library.client.security;
 
 import javafx.event.ActionEvent;
-import org.gorzela.library.client.util.ErrorInformation;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.common.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class LoginData {
     private LibraryUriComponentsFactory uriFactory;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     @Autowired
     private CurrentReaderProvider currentReaderProvider;
@@ -33,7 +33,7 @@ public class LoginData {
 
         if (loginPair.getLogin().equals("") == true || loginPair.getPassword().equals("") == true) {
 
-            errorInformation.showInformation("Brak danych", "Nie podałeś loginu bądź hasła");
+            alertInformation.showInformation("Brak danych", "Nie podałeś loginu bądź hasła");
             currentReaderProvider.checkCurrentReaderSetupAccount(event);
 
         } else {

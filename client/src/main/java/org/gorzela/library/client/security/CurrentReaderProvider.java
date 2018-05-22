@@ -1,16 +1,10 @@
 package org.gorzela.library.client.security;
 
-import de.felixroske.jfxsupport.AbstractFxmlView;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import lombok.*;
-import org.gorzela.library.client.BootLibraryClient;
 import org.gorzela.library.client.controller.LoginFormController;
 import org.gorzela.library.client.controller.ReaderFormController;
-import org.gorzela.library.client.util.ErrorInformation;
-import org.gorzela.library.client.view.CatalogFormView;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.LoginFormView;
 import org.gorzela.library.client.view.ReaderFormView;
 import org.gorzela.library.common.Reader;
@@ -39,7 +33,7 @@ public class CurrentReaderProvider {
     private ReaderFormController readerFormController;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     private Reader currentReader;
 
@@ -77,7 +71,7 @@ public class CurrentReaderProvider {
 
         if (currentReaderSetupAccount == 3) {
 
-            errorInformation.showInformation("Błąd", "Próba trzykrotnego logowania nie powiodła się");
+            alertInformation.showInformation("Błąd", "Próba trzykrotnego logowania nie powiodła się");
             loginFormController.closeLoginWindow(event, "Logowanie nie powiodło się", "");
             resetCurrentReaderSetupAccount();
         }

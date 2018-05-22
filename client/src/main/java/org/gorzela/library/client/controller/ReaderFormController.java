@@ -1,7 +1,6 @@
 package org.gorzela.library.client.controller;
 
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,26 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.gorzela.library.client.Data.ReaderData;
 import org.gorzela.library.client.security.CurrentReaderProvider;
-import org.gorzela.library.client.security.LibraryRestTemplateFactory;
-import org.gorzela.library.client.security.LibraryUriComponentsFactory;
-import org.gorzela.library.client.util.ErrorInformation;
-import org.gorzela.library.client.util.LibraryDate;
 import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j

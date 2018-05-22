@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.gorzela.library.client.security.*;
-import org.gorzela.library.client.util.ErrorInformation;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.ReaderFormView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class LoginFormController extends AbstractFormController {
     private CurrentReaderProvider currentReaderProvider;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     @Autowired
     private Pair loginPair;

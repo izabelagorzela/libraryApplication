@@ -6,14 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.gorzela.library.client.Data.LibraryData;
-import org.gorzela.library.client.util.BookSearchTrio;
-import org.gorzela.library.client.util.ErrorInformation;
-import org.gorzela.library.client.view.SelectedItemStateFormView;
+import org.gorzela.library.client.util.SelectedBook;
+import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.common.Book;
+import org.gorzela.library.common.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URISyntaxException;
@@ -27,18 +28,14 @@ public class SearchResultFormController extends AbstractFormController {
     private LibraryData libraryData;
 
     @Autowired
-    private ErrorInformation errorInformation;
+    private AlertInformation alertInformation;
 
     @Autowired
-    private BookSearchTrio bookSearchTrio;
+    private SelectedBook selectedBook;
 
-    @Autowired
-    private SelectedItemStateFormView selectedItemStateWindow;
+    private ObservableList<Book> foundBookData;
 
-    @Autowired
-    private SelectedItemStateFormController selectedItemStateController;
-
-    private ObservableList<Book> bookData;
+    private boolean settingsLabel = false;
 
     @FXML
     private TableView<Book> searchResultTableView;
@@ -62,10 +59,40 @@ public class SearchResultFormController extends AbstractFormController {
     private TableColumn<Book, String> searchResultTableTitleColumn;
 
     @FXML
+    private Label loanDateToLabel;
+
+    @FXML
+    private Label loanDateFromLabel;
+
+    @FXML
+    private Label reservationDateFromLabel;
+
+    @FXML
+    private Label reservationDateToLabel;
+
+    @FXML
+    private Label reservationFromHeaderLabel;
+
+    @FXML
+    private Label loanFromHeaderLabel;
+
+    @FXML
+    private Label loanToHeaderLabel;
+
+    @FXML
+    private Label reservationToHeaderLabel;
+
+    @FXML
+    private Label statusInformationLabel;
+
+    @FXML
     private Button closeSearchResultFormButton;
 
     @FXML
     private Button showSelectedButton;
+
+    @FXML
+    private Button reserveButton;
 
     @FXML
     public void closeSearchResultFormAction(ActionEvent event) {
@@ -75,45 +102,81 @@ public class SearchResultFormController extends AbstractFormController {
     }
 
     @FXML
-    public void showSelectedAction(ActionEvent event) {
+    void reserveAction(ActionEvent event) {
 
-        if(searchResultTableView.getSelectionModel().getSelectedItem() == null) {
+    }
 
-            errorInformation.showInformation("Błąd", "Nie wybrałeś żadnej pozycji do wglądu...");
-        }
-        else {
-            bookSearchTrio.setSelectedBookId(searchResultTableView.getSelectionModel().getSelectedItem().getBookId());
-            createAndShowWindow(selectedItemStateWindow, selectedItemStateController, "Wybrana pozycja");
+    @FXML
+    public void showSelectedBook(ActionEvent event) throws URISyntaxException {
+
+        if (searchResultTableView.getSelectionModel().getSelectedItem() == null) {
+
+            alertInformation.showInformation("Błąd", "Nie wybrałeś żadnej pozycji do wglądu...");
+
+        } else {
+
+            selectedBook.setSelectedBook(searchResultTableView.getSelectionModel().getSelectedItem());         //ustawiamy pozycje
+            if (libraryData.setCurrentLoanData() == true) {
+
+                loanDateFromLabel.setText(selectedBook.getSelectedBookCurrentLoan().getFormatDateFrom());
+                loanDateToLabel.setText(selectedBook.getSelectedBookCurrentLoan().getFormatDateTo());
+                loanFromHeaderLabel.setText("Wypożyczona od");
+                loanToHeaderLabel.setText("Wypożyczona do");
+                settingsLabel = true;
+
+            }
+            if(libraryData.setCurrentReservationData() == true) {
+
+                reservationDateFromLabel.setText(selectedBook.getSelectedBookCurrentReservation().getFormatDateFrom());
+                reservationDateToLabel.setText(selectedBook.getSelectedBookCurrentReservation().getFormatDateTo());
+                reservationFromHeaderLabel.setText("Zarezerwowana od");
+                reservationToHeaderLabel.setText("Zarezerwowana do");
+                if(settingsLabel != true) {
+
+                    settingsLabel = true;
+                }
+
+            }
+            if(settingsLabel == false) {
+
+                statusInformationLabel.setText("Ta pozycja nie ma żadnego aktualnego wypożyczenia i rezerwacji");
+            }
+            reserveButton.setDisable(false);
         }
     }
 
-    public void setBookData(Book bookDateTab[]) {
 
-        List<Book> bookList = Arrays.asList(bookDateTab);
-        bookData = FXCollections.observableArrayList(bookList);
+
+
+    public void setFoundBookData(Book foundBookDateTab[]) {
+
+        List<Book> foundBookList = Arrays.asList(foundBookDateTab);
+        foundBookData = FXCollections.observableArrayList(foundBookList);
 
     }
+
+
 
     public boolean setSearchResultTable() throws URISyntaxException {
 
-        String phraseType = bookSearchTrio.getPhraseType();
+        String phraseType = selectedBook.getPhraseType();
         switch(phraseType) {
             case "Tytuł":
-                if (libraryData.setBookDataByTitlePart(bookSearchTrio.getPhrasePart()) == true) {
+                if (libraryData.setBookDataByTitlePart(selectedBook.getPhrasePart()) == true) {
                     setTableColumns();
                     return true;
                 }
                 else
                     return false;
             case "ISBN":
-                if(libraryData.setBookDataIsbnPart(bookSearchTrio.getPhrasePart()) == true) {
+                if(libraryData.setBookDataIsbnPart(selectedBook.getPhrasePart()) == true) {
                     setTableColumns();
                     return true;
                 }
                 else
                     return false;
             case "Autor":
-                if(libraryData.setBookDataAuthorPart(bookSearchTrio.getPhrasePart()) == true) {
+                if(libraryData.setBookDataAuthorPart(selectedBook.getPhrasePart()) == true) {
                     setTableColumns();
                     return true;
                 }
@@ -131,11 +194,13 @@ public class SearchResultFormController extends AbstractFormController {
         searchResultTableAuthorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("AuthorsNames"));
         searchResultTableCategoryColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("CategoriesName"));
         searchResultTableAliasColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("AliasesNames"));
-        searchResultTableView.setItems(bookData);
+        searchResultTableView.setItems(foundBookData);
     }
 
     @Override
     public boolean setWindow() throws URISyntaxException{
+
+        reserveButton.setDisable(true);
         if (setSearchResultTable() == false)
             return false;
         return true;

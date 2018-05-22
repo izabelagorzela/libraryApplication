@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.Optional;
 
 @Component
-public class ErrorInformation {
+public class AlertInformation {
 
     public void showInformation(String title, String contentText ) {
 
