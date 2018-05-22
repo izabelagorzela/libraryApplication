@@ -97,6 +97,8 @@ public class SearchResultFormController extends AbstractFormController {
     @FXML
     public void closeSearchResultFormAction(ActionEvent event) {
 
+        clearLabels();
+        showSelectedButton.setDisable(false);
         closeWindow((Button)event.getSource());
 
     }
@@ -152,6 +154,12 @@ public class SearchResultFormController extends AbstractFormController {
 
         List<Book> foundBookList = Arrays.asList(foundBookDateTab);
         foundBookData = FXCollections.observableArrayList(foundBookList);
+        if(foundBookData.size() == 0) {
+
+            searchResultTableView.setPlaceholder(new Label("Brak wyszukiwanych pozycji"));
+            showSelectedButton.setDisable(true);
+
+        }
 
     }
 
@@ -204,5 +212,17 @@ public class SearchResultFormController extends AbstractFormController {
         if (setSearchResultTable() == false)
             return false;
         return true;
+    }
+
+    public void clearLabels() {
+
+        loanDateFromLabel.setText("");
+        loanDateToLabel.setText("");
+        loanFromHeaderLabel.setText("");
+        loanToHeaderLabel.setText("");
+        reservationDateFromLabel.setText("");
+        reservationDateToLabel.setText("");
+        reservationFromHeaderLabel.setText("");
+        reservationToHeaderLabel.setText("");
     }
 }

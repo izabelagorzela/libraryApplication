@@ -24,20 +24,10 @@ public class AlertInformation {
         File file = new File("client/src/main/resources/org/gorzela/library/client/view/style.css");
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///" + file.getAbsolutePath().replace("\\", "/"));
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent()) {
-            ButtonType pressed = result.get();
-            if(pressed == ButtonType.OK) {
-                System.out.println("Jest o.k.");
-                //return true;
-            }
-            else
-                System.out.println("jrst false");
-                //return false;
-        }
+        alert.showAndWait();
     }
 
-    public void showConfirm(String title, String contentText ) {
+    public boolean showConfirm(String title, String contentText ) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
@@ -49,6 +39,17 @@ public class AlertInformation {
         File file = new File("client/src/main/resources/org/gorzela/library/client/view/style.css");
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///" + file.getAbsolutePath().replace("\\", "/"));
-        alert.showAndWait();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent()) {
+            ButtonType pressed = result.get();
+            if(pressed == ButtonType.OK) {
+
+                return true;
+            }
+            else
+                return false;
+        }
+        return false;
     }
 }

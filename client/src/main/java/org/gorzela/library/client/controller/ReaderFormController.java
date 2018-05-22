@@ -81,6 +81,11 @@ public class ReaderFormController extends AbstractFormController {
 
         List<Reservation> reservationList = Arrays.asList(reservationDateTab);
         reservationData = FXCollections.observableArrayList(reservationList);
+        if(reservationData.size() == 0) {
+
+            readerReservationTableView.setPlaceholder(new Label("Nie posiadasz aktualnych rezerwacji"));
+            cancelReservationButton.setDisable(true);
+        }
 
     }
 
@@ -88,6 +93,11 @@ public class ReaderFormController extends AbstractFormController {
 
         List<Loan> loanList = Arrays.asList(loanDateTab);
         loanData = FXCollections.observableArrayList(loanList);
+        if(loanData.size() == 0) {
+
+            rentalsTableView.setPlaceholder(new Label("Nie posiadzasz aktualnych wypożyczeń"));
+            prolongButton.setDisable(true);
+        }
 
     }
 

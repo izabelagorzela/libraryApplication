@@ -127,25 +127,27 @@ public class ReaderData {
         if (selectedReservation == null) {
 
             alertInformation.showInformation("Błąd", "Nie wybrałeś żadnej rezerwacji do usunięcia...");
-            //alertInformation.showConfirm("Potwierdzenie", "Czy chcesz usunąć wybraną rezerwację...");
+
         }
         else {
 
-            URI uri = uriFactory.getUri("/reservation/deleteById", "id", selectedReservation.getReservationId().toString());
-            RestTemplate restTemplate = restTemplateFactory.getRestTemplate(currentReaderProvider.getCurrentReader().getLogin(), currentReaderProvider.getCurrentReader().getPassword());
+            if(alertInformation.showConfirm("Potwierdzenie", "Czy chcesz usunąć wybraną rezerwację...") == true) {
 
-            try {
+                URI uri = uriFactory.getUri("/reservation/deleteById", "id", selectedReservation.getReservationId().toString());
+                RestTemplate restTemplate = restTemplateFactory.getRestTemplate(currentReaderProvider.getCurrentReader().getLogin(), currentReaderProvider.getCurrentReader().getPassword());
+                try {
 
-                entity = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
-                if (entity.getStatusCode() == HttpStatus.NO_CONTENT) {
+                    entity = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
+                    if (entity.getStatusCode() == HttpStatus.NO_CONTENT) {
 
-                   alertInformation.showInformation("Błąd", "Ta rezerwacja już nie jest aktualna...nie można jej usunąć");
+                        alertInformation.showInformation("Błąd", "Ta rezerwacja już nie jest aktualna...nie można jej usunąć");
+                    }
+                } catch (Exception ex) {
+
+                    log.error("Something wrong happened...");
+                    Platform.exit();
+
                 }
-
-            } catch (Exception ex) {
-
-                log.error("Something wrong happened...");
-                Platform.exit();
 
             }
         }
