@@ -11,8 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.gorzela.library.client.Data.LibraryData;
+import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.util.AlertInformation;
+import org.gorzela.library.client.view.LoginFormView;
 import org.gorzela.library.common.Book;
 import org.gorzela.library.common.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,19 @@ public class SearchResultFormController extends AbstractFormController {
     @Autowired
     private LibraryData libraryData;
 
+    private boolean loanState = false;
+
+    private boolean reservationState = false;
+
+    @Autowired
+    CurrentReaderProvider currentReaderProvider;
+
+    @Autowired
+    LoginFormController loginController;
+
+    @Autowired
+    LoginFormView loginWindow;
+
     @Autowired
     private AlertInformation alertInformation;
 
@@ -34,8 +49,6 @@ public class SearchResultFormController extends AbstractFormController {
     private SelectedBook selectedBook;
 
     private ObservableList<Book> foundBookData;
-
-    private boolean settingsLabel = false;
 
     @FXML
     private TableView<Book> searchResultTableView;
@@ -98,6 +111,7 @@ public class SearchResultFormController extends AbstractFormController {
     public void closeSearchResultFormAction(ActionEvent event) {
 
         clearLabels();
+        setBookState();
         showSelectedButton.setDisable(false);
         closeWindow((Button)event.getSource());
 
@@ -105,6 +119,18 @@ public class SearchResultFormController extends AbstractFormController {
 
     @FXML
     void reserveAction(ActionEvent event) {
+
+
+
+            if(loanState == false && reservationState == false) {
+
+                alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie do wypożyczenia...");
+            }
+            if(reservationState == true) {
+
+                alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie zarezerwowana...");
+            }
+
 
     }
 
@@ -115,8 +141,10 @@ public class SearchResultFormController extends AbstractFormController {
 
             alertInformation.showInformation("Błąd", "Nie wybrałeś żadnej pozycji do wglądu...");
 
-        } else {
-
+        }
+        else {
+            setBookState();
+            clearLabels();
             selectedBook.setSelectedBook(searchResultTableView.getSelectionModel().getSelectedItem());         //ustawiamy pozycje
             if (libraryData.setCurrentLoanData() == true) {
 
@@ -124,7 +152,7 @@ public class SearchResultFormController extends AbstractFormController {
                 loanDateToLabel.setText(selectedBook.getSelectedBookCurrentLoan().getFormatDateTo());
                 loanFromHeaderLabel.setText("Wypożyczona od");
                 loanToHeaderLabel.setText("Wypożyczona do");
-                settingsLabel = true;
+                loanState = true;
 
             }
             if(libraryData.setCurrentReservationData() == true) {
@@ -133,13 +161,10 @@ public class SearchResultFormController extends AbstractFormController {
                 reservationDateToLabel.setText(selectedBook.getSelectedBookCurrentReservation().getFormatDateTo());
                 reservationFromHeaderLabel.setText("Zarezerwowana od");
                 reservationToHeaderLabel.setText("Zarezerwowana do");
-                if(settingsLabel != true) {
-
-                    settingsLabel = true;
-                }
+                reservationState = true;
 
             }
-            if(settingsLabel == false) {
+            if(loanState == false && reservationState == false) {
 
                 statusInformationLabel.setText("Ta pozycja nie ma żadnego aktualnego wypożyczenia i rezerwacji");
             }
@@ -214,7 +239,7 @@ public class SearchResultFormController extends AbstractFormController {
         return true;
     }
 
-    public void clearLabels() {
+    private void clearLabels() {
 
         loanDateFromLabel.setText("");
         loanDateToLabel.setText("");
@@ -224,5 +249,12 @@ public class SearchResultFormController extends AbstractFormController {
         reservationDateToLabel.setText("");
         reservationFromHeaderLabel.setText("");
         reservationToHeaderLabel.setText("");
+        statusInformationLabel.setText("");
+    }
+
+    private void setBookState() {
+
+        loanState = false;
+        reservationState = false;
     }
 }

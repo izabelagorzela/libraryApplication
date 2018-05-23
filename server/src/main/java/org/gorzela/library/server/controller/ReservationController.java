@@ -46,7 +46,7 @@ public class ReservationController {
 
 
 
-    @PostMapping(value = "/addNewReservation")            //przekazane parametry zmienic: book, reader
+    @PostMapping(value = "/addNewReservation")
     public ResponseEntity<Reservation> addReservation(@RequestParam(name = "dateFrom")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFrom , @RequestParam(name = "dateTo")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateTo) {
         Reservation reservation = new Reservation();
         Book book = new Book();
