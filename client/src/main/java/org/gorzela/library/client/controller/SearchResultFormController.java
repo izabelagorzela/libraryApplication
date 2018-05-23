@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.gorzela.library.client.Data.LibraryData;
 import org.gorzela.library.client.security.CurrentReaderProvider;
+import org.gorzela.library.client.security.CurrentWindow;
 import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.LoginFormView;
@@ -28,6 +29,9 @@ public class SearchResultFormController extends AbstractFormController {
 
     @Autowired
     private LibraryData libraryData;
+
+    @Autowired
+    CurrentWindow currentWindow;
 
     private boolean loanState = false;
 
@@ -121,14 +125,24 @@ public class SearchResultFormController extends AbstractFormController {
     void reserveAction(ActionEvent event) {
 
 
+            if(currentReaderProvider.getCurrentReader() == null) {
 
-            if(loanState == false && reservationState == false) {
-
-                alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie do wypożyczenia...");
+                currentWindow.setWindowName("researchWindow");
             }
-            if(reservationState == true) {
+            else {
+                if (loanState == false && reservationState == false) {
 
-                alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie zarezerwowana...");
+                    alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie do wypożyczenia...");
+                }
+                if (reservationState == true) {
+
+                    alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie zarezerwowana...");
+                }
+                if (reservationState == false && loanState == true){
+                    System.out.println("create");    //utworzenie nowej rezerwacji
+                    //po tym blokowanie przycisku rezerwuj
+                }
+
             }
 
 

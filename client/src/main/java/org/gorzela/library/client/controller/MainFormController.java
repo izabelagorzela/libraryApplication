@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import de.felixroske.jfxsupport.FXMLController;
 //import org.apache.http.client.utils.URIBuilder;
 import org.gorzela.library.client.security.CurrentReaderProvider;
+import org.gorzela.library.client.security.CurrentWindow;
 import org.gorzela.library.client.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Component;
 @Component
 @FXMLController
 public class MainFormController extends AbstractFormController {
+
+    @Autowired
+    private CurrentWindow currentWindow;
 
     @Autowired
     private StatisticsFormView statisticsWindow;
@@ -82,6 +86,9 @@ public class MainFormController extends AbstractFormController {
         if (currentReaderProvider.getCurrentReader() != null) {
 
             createAndShowWindow(readerWindow, readerController, "Twoje konto");
+        }
+        else {
+            currentWindow.setWindowName("readerWindow");
         }
     }
 

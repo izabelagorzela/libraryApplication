@@ -21,6 +21,9 @@ import org.springframework.stereotype.Component;
 public class CurrentReaderProvider {
 
     @Autowired
+    CurrentWindow currentWindow;
+
+    @Autowired
     private LoginFormView loginWindow;
 
     @Autowired
@@ -82,7 +85,9 @@ public class CurrentReaderProvider {
         setCurrentReader(currentReader);
         loginFormController.resetLoginTextFields();
         loginFormController.closeLoginWindow(event, "Jesteś zalogowany jako:", currentReader.getLogin(), false);
-        readerFormController.createAndShowWindow(readerWindow, readerFormController, "Twoje konto");
+        if(currentWindow.getWindowName().equals("readerWindow") == true ) {
+            readerFormController.createAndShowWindow(readerWindow, readerFormController, "Twoje konto");
+        }
         resetCurrentReaderSetupAccount();
     }
 }
