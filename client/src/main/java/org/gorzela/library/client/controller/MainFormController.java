@@ -12,6 +12,7 @@ import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.security.CurrentWindow;
 import org.gorzela.library.client.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -62,6 +63,7 @@ public class MainFormController extends AbstractFormController {
 
     @FXML
     private MenuItem closeApplicationMenu;
+
 
     public void setSignOffButton(boolean buttonState) {
 
@@ -116,6 +118,15 @@ public class MainFormController extends AbstractFormController {
     public boolean setWindow(){
 
         return true;
+    }
+
+
+    //probna metoda dla schedule
+    @Scheduled(cron = "0 0 18 * * ?")
+    public void setSome () {
+
+
+        System.out.println("some");
     }
 
 }

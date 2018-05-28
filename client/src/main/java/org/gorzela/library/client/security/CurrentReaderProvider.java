@@ -55,6 +55,11 @@ public class CurrentReaderProvider {
         return currentReader;
     }
 
+    public Reader getCurrentReaderWithoutNewWindow() {
+
+        return currentReader;
+    }
+
     public void unsetCurrentReader() {
 
         currentReader = null;

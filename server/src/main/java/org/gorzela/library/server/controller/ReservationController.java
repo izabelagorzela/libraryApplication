@@ -47,12 +47,12 @@ public class ReservationController {
 
 
     @PostMapping(value = "/addNewReservation")
-    public ResponseEntity<Reservation> addReservation(@RequestParam(name = "dateFrom")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFrom , @RequestParam(name = "dateTo")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateTo) {
+    public ResponseEntity<Reservation> addReservation(@RequestParam(name = "dateFrom")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFrom , @RequestParam(name = "dateTo")@DateTimeFormat(pattern = "yyyy-MM-dd")Date dateTo, Long readerId, Long bookId){
         Reservation reservation = new Reservation();
         Book book = new Book();
-        book.setBookId(1L);
+        book.setBookId(bookId);
         Reader reader = new Reader();
-        reader.setReaderId(1L);
+        reader.setReaderId(readerId);
 
         reservation.setDateFrom(dateFrom);
         reservation.setDateTo(dateTo);

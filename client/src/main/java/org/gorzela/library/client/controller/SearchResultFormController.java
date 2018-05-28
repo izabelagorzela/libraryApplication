@@ -11,8 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.gorzela.library.client.Data.LibraryData;
+import org.gorzela.library.client.Data.ReaderData;
 import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.security.CurrentWindow;
+import org.gorzela.library.client.util.LibraryDate;
 import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.LoginFormView;
@@ -27,11 +29,15 @@ import java.util.List;
 @FXMLController
 public class SearchResultFormController extends AbstractFormController {
 
+
     @Autowired
     private LibraryData libraryData;
 
     @Autowired
     CurrentWindow currentWindow;
+
+    @Autowired
+    ReaderData readerData;
 
     private boolean loanState = false;
 
@@ -122,7 +128,7 @@ public class SearchResultFormController extends AbstractFormController {
     }
 
     @FXML
-    void reserveAction(ActionEvent event) {
+    void reserveAction(ActionEvent event) throws URISyntaxException{
 
 
             if(currentReaderProvider.getCurrentReader() == null) {
@@ -139,8 +145,19 @@ public class SearchResultFormController extends AbstractFormController {
                     alertInformation.showInformation("Informacja", "Nie można zarezerwować danej pozycji. Książka jest aktualnie zarezerwowana...");
                 }
                 if (reservationState == false && loanState == true){
-                    System.out.println("create");    //utworzenie nowej rezerwacji
-                    //po tym blokowanie przycisku rezerwuj
+
+                    readerData.createNewReservation();
+
+                    if(libraryData.setCurrentReservationData() == true) {
+
+                        reservationDateFromLabel.setText(selectedBook.getSelectedBookCurrentReservation().getFormatDateFrom());
+                        reservationDateToLabel.setText(selectedBook.getSelectedBookCurrentReservation().getFormatDateTo());
+                        reservationFromHeaderLabel.setText("Zarezerwowana od");
+                        reservationToHeaderLabel.setText("Zarezerwowana do");
+                        reservationState = true;
+
+                    }
+                    reserveButton.setDisable(true);
                 }
 
             }

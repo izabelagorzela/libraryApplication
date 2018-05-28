@@ -12,7 +12,9 @@ import java.util.Date;
 @Component
 public class LibraryDate {
 
-    //private Date currentDate;
+    private Date currentDate;
+
+    private Date reservationFinishDate;
 
     private Date prolongedDate;
 
@@ -21,7 +23,22 @@ public class LibraryDate {
         LocalDate todayPlusOne = LocalDate.now().plusMonths(1);
         Date prolongedDate = Date.from(todayPlusOne.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-        //String prolongedDateAsString = formatter.format(prolongedDate);
         return formatter.format(prolongedDate);
+    }
+
+    public String getReservationFinishDateAsString() {
+
+        LocalDate todayPlusOne = LocalDate.now().plusWeeks(1);
+        Date finishDate = Date.from(todayPlusOne.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(finishDate);
+    }
+
+    public String getTodayDateAsString() {
+
+        //LocalDate todayPlusOne = LocalDate.now().plusWeeks(1);
+        Date toDayDate = Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(toDayDate);
     }
 }

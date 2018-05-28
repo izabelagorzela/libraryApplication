@@ -8,7 +8,10 @@ import org.gorzela.library.client.security.LibraryRestTemplateFactory;
 import org.gorzela.library.client.security.LibraryUriComponentsFactory;
 import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.util.LibraryDate;
+import org.gorzela.library.client.util.SelectedBook;
+import org.gorzela.library.common.Book;
 import org.gorzela.library.common.Loan;
+import org.gorzela.library.common.Reader;
 import org.gorzela.library.common.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -23,6 +26,9 @@ import java.net.URISyntaxException;
 @Slf4j
 @Component
 public class ReaderData {
+
+    @Autowired
+    SelectedBook selectedBook;
 
     @Autowired
     private LibraryRestTemplateFactory restTemplateFactory;
@@ -153,4 +159,32 @@ public class ReaderData {
         }
 
     }
-}
+
+
+    public void createNewReservation() throws URISyntaxException {
+
+            ResponseEntity<Reader> entity;
+            URI uri = uriFactory.getUri("/reservation/addNewReservation", "dateFrom", libraryDate.getTodayDateAsString(),"dateTo", libraryDate.getReservationFinishDateAsString(),  "readerId", currentReaderProvider.getCurrentReaderWithoutNewWindow().getReaderId().toString(), "bookId", selectedBook.getSelectedBook().getBookId().toString());
+            RestTemplate restTemplate = restTemplateFactory.getRestTemplate(currentReaderProvider.getCurrentReader().getLogin(), currentReaderProvider.getCurrentReader().getPassword());
+
+            try {
+
+                entity = restTemplate.exchange(uri, HttpMethod.POST, null, Reader.class);
+                if (entity.getStatusCode() == HttpStatus.CREATED) {
+
+                    alertInformation.showInformation("Informacja", "Została utworzona nowa rezerwacja");
+                }
+                else {
+
+                    alertInformation.showInformation("Błąd", "Wystąpił błąd przy tworzeniu nowej rezerwacji");
+                }
+
+            } catch (Exception ex) {
+
+                log.error("Something wrong happened...");
+                Platform.exit();
+
+            }
+        }
+    }
+
