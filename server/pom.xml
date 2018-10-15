@@ -19,12 +19,6 @@
         </dependency>
 
         <dependency>
-            <groupId>gorzela</groupId>
-            <artifactId>libraryApplication</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -74,29 +68,34 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>1.5.1.RELEASE</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>gorzela</groupId>-->
+            <!--<artifactId>client</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
     </dependencies>
 
-    <!--<build>-->
+    <build>
 
-        <!--<plugins>-->
+        <plugins>
 
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>repackage</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<classifier>spring-boot</classifier>-->
-                            <!--<mainClass>org.gorzela.library.server.BootLibraryServer</mainClass>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>spring-boot</classifier>
+                            <mainClass>org.gorzela.library.server.BootLibraryServer</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-        <!--</plugins>-->
+        </plugins>
 
-    <!--</build>-->
+    </build>
 </project>

@@ -170,15 +170,10 @@ public class ReaderData {
             try {
 
                 entity = restTemplate.exchange(uri, HttpMethod.POST, null, Reader.class);
-                if (entity.getStatusCode() == HttpStatus.CREATED) {
-
-                    alertInformation.showInformation("Informacja", "Została utworzona nowa rezerwacja");
-                }
-                else {
+                if (entity.getStatusCode() != HttpStatus.CREATED) {
 
                     alertInformation.showInformation("Błąd", "Wystąpił błąd przy tworzeniu nowej rezerwacji");
                 }
-
             } catch (Exception ex) {
 
                 log.error("Something wrong happened...");
@@ -186,5 +181,6 @@ public class ReaderData {
 
             }
         }
-    }
+
+}
 

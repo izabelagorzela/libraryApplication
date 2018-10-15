@@ -1,24 +1,32 @@
 package org.gorzela.library.client.controller;
 
 
-
+import de.felixroske.jfxsupport.FXMLController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import de.felixroske.jfxsupport.FXMLController;
-//import org.apache.http.client.utils.URIBuilder;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import lombok.extern.slf4j.Slf4j;
+import org.gorzela.library.client.Data.ReaderData;
 import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.security.CurrentWindow;
-import org.gorzela.library.client.view.*;
+import org.gorzela.library.client.view.CatalogFormView;
+import org.gorzela.library.client.view.ReaderFormView;
+import org.gorzela.library.client.view.StatisticsFormView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+//import org.apache.http.client.utils.URIBuilder;
+
+@Slf4j
 @Component
 @FXMLController
 public class MainFormController extends AbstractFormController {
 
+    @Autowired
+    private ReaderData readerData;
     @Autowired
     private CurrentWindow currentWindow;
 
@@ -77,7 +85,7 @@ public class MainFormController extends AbstractFormController {
     }
 
     @FXML
-    public void closeApplicationAction(ActionEvent event) {
+    public void closeApplicationAction(ActionEvent event){
 
             Platform.exit();
     }
@@ -118,15 +126,6 @@ public class MainFormController extends AbstractFormController {
     public boolean setWindow(){
 
         return true;
-    }
-
-
-    //probna metoda dla schedule
-    @Scheduled(cron = "0 0 18 * * ?")
-    public void setSome () {
-
-
-        System.out.println("some");
     }
 
 }

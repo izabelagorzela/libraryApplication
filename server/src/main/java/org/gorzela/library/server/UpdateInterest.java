@@ -1,24 +1,15 @@
 package org.gorzela.library.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.gorzela.library.client.security.LibraryRestTemplateFactory;
-import org.gorzela.library.client.security.LibraryUriComponentsFactory;
-import org.gorzela.library.client.util.LibraryDate;
 import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reader;
 import org.gorzela.library.server.repository.LoanRepository;
 import org.gorzela.library.server.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;

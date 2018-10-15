@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -70,7 +71,6 @@ public class Reader {
     @Column(name="role")
     private String role;
 
-    @NotBlank
     @Column(name="payment")
     private double payment;
 }

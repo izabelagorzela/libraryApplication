@@ -29,5 +29,6 @@ public interface LoanRepository extends CrudRepository<Loan, Long> {
     @Query("update Loan l set l.dateTo = ?1 where l.loanId = ?2")
     int setNewDateTo(Date newDateTo, Long loanId);
 
+    ArrayList<Loan> findByDateToBeforeAndReturnDateIsNull(Date date);
 
 }
