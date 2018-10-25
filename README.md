@@ -1,5 +1,5 @@
 The application delivers the functionality of public library support for readers. 
-It requires a sql database that you can create by executing the sql script in the library_copy.sql file (default configuration). 
+It requires a MySQL database that you can create by executing the sql script in the library_copy.sql file (default configuration with root user).
 It is located in the resources for the whole application.
 To run the application, proceed as follows:
 1) start the server
