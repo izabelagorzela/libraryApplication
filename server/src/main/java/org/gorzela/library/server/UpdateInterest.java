@@ -8,7 +8,6 @@ import org.gorzela.library.server.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.ZoneId;

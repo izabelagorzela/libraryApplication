@@ -2,16 +2,9 @@ package org.gorzela.library.client.security;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriComponents;
-
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import static org.gorzela.library.client.util.Constants.HOST;
-import static org.gorzela.library.client.util.Constants.PATH;
-import static org.gorzela.library.client.util.Constants.PROTOCOL;
+import static org.gorzela.library.client.util.Constants.*;
 
 @Component
 public class LibraryUriComponentsFactory {

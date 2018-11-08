@@ -3,12 +3,7 @@ package org.gorzela.library.common;
 import lombok.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Iza on 2017-07-08.

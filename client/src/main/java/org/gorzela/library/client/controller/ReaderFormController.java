@@ -16,7 +16,6 @@ import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;

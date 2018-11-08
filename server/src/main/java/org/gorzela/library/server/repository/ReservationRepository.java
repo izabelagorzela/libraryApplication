@@ -2,15 +2,12 @@ package org.gorzela.library.server.repository;
 
 
 import org.gorzela.library.common.Book;
-import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reservation;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 

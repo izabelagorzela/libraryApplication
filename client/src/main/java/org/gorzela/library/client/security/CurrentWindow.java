@@ -1,6 +1,5 @@
 package org.gorzela.library.client.security;
 
-import de.felixroske.jfxsupport.AbstractFxmlView;
 import lombok.*;
 import org.springframework.stereotype.Component;
 

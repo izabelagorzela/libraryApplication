@@ -7,11 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.util.AlertInformation;
+import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.view.SearchResultFormView;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

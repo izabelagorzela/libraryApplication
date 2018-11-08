@@ -2,20 +2,16 @@ package org.gorzela.library.server.controller;
 
 import org.gorzela.library.common.Book;
 import org.gorzela.library.common.Loan;
-import org.gorzela.library.common.LoansDTO;
 import org.gorzela.library.common.Reader;
 import org.gorzela.library.server.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/Rest/library/loan")

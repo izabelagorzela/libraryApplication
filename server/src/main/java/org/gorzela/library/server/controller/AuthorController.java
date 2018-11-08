@@ -2,18 +2,16 @@ package org.gorzela.library.server.controller;
 
 
 import lombok.Setter;
-import org.gorzela.library.common.Alias;
 import org.gorzela.library.common.Author;
-import org.gorzela.library.common.Book;
-import org.gorzela.library.server.repository.AliasRepository;
 import org.gorzela.library.server.repository.AuthorRepository;
-import org.gorzela.library.server.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @Setter

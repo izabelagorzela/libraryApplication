@@ -2,10 +2,9 @@ package org.gorzela.library.client.controller;
 
 import de.felixroske.jfxsupport.AbstractFxmlView;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-
 import java.net.URISyntaxException;
 
 public  abstract class AbstractFormController {

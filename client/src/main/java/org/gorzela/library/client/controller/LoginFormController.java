@@ -4,13 +4,16 @@ package org.gorzela.library.client.controller;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import org.gorzela.library.client.security.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import org.gorzela.library.client.security.CurrentReaderProvider;
+import org.gorzela.library.client.security.LoginData;
+import org.gorzela.library.client.security.Pair;
 import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.view.ReaderFormView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 

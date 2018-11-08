@@ -14,14 +14,11 @@ import org.gorzela.library.client.Data.LibraryData;
 import org.gorzela.library.client.Data.ReaderData;
 import org.gorzela.library.client.security.CurrentReaderProvider;
 import org.gorzela.library.client.security.CurrentWindow;
-import org.gorzela.library.client.util.LibraryDate;
-import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.util.AlertInformation;
+import org.gorzela.library.client.util.SelectedBook;
 import org.gorzela.library.client.view.LoginFormView;
 import org.gorzela.library.common.Book;
-import org.gorzela.library.common.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;

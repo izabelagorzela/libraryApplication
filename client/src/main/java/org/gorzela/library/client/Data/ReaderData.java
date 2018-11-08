@@ -9,7 +9,6 @@ import org.gorzela.library.client.security.LibraryUriComponentsFactory;
 import org.gorzela.library.client.util.AlertInformation;
 import org.gorzela.library.client.util.LibraryDate;
 import org.gorzela.library.client.util.SelectedBook;
-import org.gorzela.library.common.Book;
 import org.gorzela.library.common.Loan;
 import org.gorzela.library.common.Reader;
 import org.gorzela.library.common.Reservation;
@@ -19,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 

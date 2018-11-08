@@ -1,8 +1,6 @@
 package org.gorzela.library.client.util;
 
 import org.springframework.stereotype.Component;
-
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

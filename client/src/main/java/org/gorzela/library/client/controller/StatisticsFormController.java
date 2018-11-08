@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.gorzela.library.client.Data.LibraryData;
 import org.gorzela.library.common.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.net.URISyntaxException;
 
 @FXMLController

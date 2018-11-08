@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.util.Optional;
 
