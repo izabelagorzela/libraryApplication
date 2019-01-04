@@ -35,9 +35,6 @@ public class LibraryData {
     private LibraryUriComponentsFactory uriFactory;
 
     @Autowired
-    private AlertInformation alertInformation;
-
-    @Autowired
     private SearchResultFormController searchResultFormController;
 
     public LibraryData() {
@@ -45,8 +42,8 @@ public class LibraryData {
 
     public ObservableList<Book> getStatisticsData() throws URISyntaxException {
 
-        Book[] forNow = restTemplateFactory.getRestTemplate().getForObject(uriFactory.getUri("/book/getMostLoaned"), Book[].class);
-        List<Book> bookList = Arrays.asList(forNow);
+        Book[] mostLoanedBooks = restTemplateFactory.getRestTemplate().getForObject(uriFactory.getUri("/book/getMostLoaned"), Book[].class);
+        List<Book> bookList = Arrays.asList(mostLoanedBooks);
         return FXCollections.observableArrayList(bookList);
 
     }
@@ -67,8 +64,8 @@ public class LibraryData {
         }
         if (entity.getStatusCode() == HttpStatus.OK) {
 
-            Book[] forNow = entity.getBody();
-            searchResultFormController.setFoundBookData(forNow);
+            Book[] booksByTitle = entity.getBody();
+            searchResultFormController.setFoundBookData(booksByTitle);
             return true;
         }
         else {
@@ -91,8 +88,8 @@ public class LibraryData {
         }
         if (entity.getStatusCode() == HttpStatus.OK) {
 
-            Book[] forNow = entity.getBody();
-            searchResultFormController.setFoundBookData(forNow);
+            Book[] booksByIsbn = entity.getBody();
+            searchResultFormController.setFoundBookData(booksByIsbn);
             return true;
         }
         else {
@@ -115,8 +112,8 @@ public class LibraryData {
         }
         if (entity.getStatusCode() == HttpStatus.OK) {
 
-            Book[] forNow = entity.getBody();
-            searchResultFormController.setFoundBookData(forNow);
+            Book[] booksByAuthor = entity.getBody();
+            searchResultFormController.setFoundBookData(booksByAuthor);
             return true;
         }
         else {
@@ -139,9 +136,9 @@ public class LibraryData {
         }
 
         if (entity.getStatusCode() == HttpStatus.OK) {
-            Loan[] forNow = entity.getBody();
-            if(forNow.length != 0) {
-                selectedBook.setSelectedBookCurrentLoan(forNow[0]);
+            Loan[] loansByBookAndReturn = entity.getBody();
+            if(loansByBookAndReturn.length != 0) {
+                selectedBook.setSelectedBookCurrentLoan(loansByBookAndReturn[0]);
                 return true;
             }
         }
@@ -163,9 +160,9 @@ public class LibraryData {
         }
 
         if (entity.getStatusCode() == HttpStatus.OK) {
-            Reservation[] forNow = entity.getBody();
-            if(forNow.length != 0) {
-                selectedBook.setSelectedBookCurrentReservation(forNow[0]);
+            Reservation[] reservationsByBookAndCancelDate = entity.getBody();
+            if(reservationsByBookAndCancelDate.length != 0) {
+                selectedBook.setSelectedBookCurrentReservation(reservationsByBookAndCancelDate[0]);
                 return true;
             }
         }

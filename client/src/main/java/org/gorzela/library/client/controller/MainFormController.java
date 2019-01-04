@@ -26,8 +26,6 @@ import org.springframework.stereotype.Component;
 public class MainFormController extends AbstractFormController {
 
     @Autowired
-    private ReaderData readerData;
-    @Autowired
     private CurrentWindow currentWindow;
 
     @Autowired

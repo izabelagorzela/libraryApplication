@@ -12,11 +12,8 @@ import java.util.Date;
 
 public interface LoanRepository extends CrudRepository<Loan, Long> {
 
-    @Query("select l from Loan l where l.reader.id = :readerId")          //operujemy na obiektach i ich polach
+    @Query("select l from Loan l where l.reader.id = :readerId")
     ArrayList<Loan> getByReaderId(@Param("readerId") Long readerId);
-
-//    @Query("select l from Loan l where l.reader.id = ?1 and l.returnDate=?2")          //operujemy na obiektach i ich polach
-//    ArrayList<Loan> getByReaderIdAndReturnDate(Long readerId, Date returnDate);
 
     ArrayList<Loan> findByReaderAndReturnDateIsNull(Reader reader);
 

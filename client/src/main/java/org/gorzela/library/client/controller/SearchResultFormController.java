@@ -44,12 +44,6 @@ public class SearchResultFormController extends AbstractFormController {
     CurrentReaderProvider currentReaderProvider;
 
     @Autowired
-    LoginFormController loginController;
-
-    @Autowired
-    LoginFormView loginWindow;
-
-    @Autowired
     private AlertInformation alertInformation;
 
     @Autowired

@@ -27,7 +27,7 @@ public class ReaderController {
     @Autowired
     ReaderRepository readerRepository;
 
-    @GetMapping("get/one")                                                    //WYKORZYSTANA
+    @GetMapping("get/one")
     public ResponseEntity<Reader> getReader() {
 
         Reader reader = readerRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -38,17 +38,12 @@ public class ReaderController {
         return ResponseEntity.ok(reader);
     }
 
-
-
-
-
     @GetMapping("get/all")
     public ResponseEntity<ArrayList<Reader>> getAllReader(){
         ArrayList<Reader> list = readerRepository.findAll();
         return ResponseEntity.ok(list);
     }
 
-    //z DTO nie dziala jeszcze
     @GetMapping("get/loans")
     public ResponseEntity<List<ReaderLoansDTO>> getReaderLoans(Long readerId) {
 
@@ -59,14 +54,4 @@ public class ReaderController {
 
         return ResponseEntity.ok(readerLoans);
     }
-
-//    @GetMapping(value = "/getPaymentByReaderId", produces = MediaType.APPLICATION_JSON_VALUE)            //WYKORZYSTANA
-//    public ResponseEntity<Payment> getByReaderId(Long readerId) {
-//        Payment payment = paymentRepository.findByReaderId(readerId);
-//        if (payment != null) {
-//            return ResponseEntity.status(HttpStatus.OK).body(payment);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-//        }
-//    }
 }

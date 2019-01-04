@@ -22,16 +22,10 @@ import java.net.URISyntaxException;
 public class LoginFormController extends AbstractFormController {
 
     @Autowired
-    private ReaderFormView readerWindow;
-
-    @Autowired
     private MainFormController mainFormController;
 
     @Autowired
     private CurrentReaderProvider currentReaderProvider;
-
-    @Autowired
-    private AlertInformation alertInformation;
 
     @Autowired
     private Pair loginPair;

@@ -38,19 +38,7 @@ public class LoanController {
         }
     }
 
-//    @GetMapping("get/byReaderIdAndReturnDate")                                                          //zle
-//    public ResponseEntity<ArrayList<Loan>> getByReaderIdAndReturnDate(Long readerId, @RequestParam(name = "returnDate") @DateTimeFormat(pattern = "yyyy-MM-dd")Date returnDate) {
-//
-//        ArrayList<Loan> loans = loanRepository.getByReaderIdAndReturnDate(readerId, returnDate);
-//        if(loans != null || loans.size() > 0) {
-//            return ResponseEntity.status(HttpStatus.OK).body(loans);
-//        }
-//        else {
-//            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-//        }
-//    }
-
-    @GetMapping(value = "get/byReaderAndReturnDate")                                                          //uzywana
+    @GetMapping(value = "get/byReaderAndReturnDate")
     public ResponseEntity<ArrayList<Loan>> getByReaderAndReturnDate(Long readerId) {
 
         Reader reader = new Reader();
@@ -64,7 +52,7 @@ public class LoanController {
         }
     }
 
-    @GetMapping(value = "get/byBookAndReturnDate")                                                          //uzywana
+    @GetMapping(value = "get/byBookAndReturnDate")
     public ResponseEntity<ArrayList<Loan>> getByBookAndReturnDate(Long bookId) {
 
         Book book = new Book();
@@ -78,9 +66,6 @@ public class LoanController {
         }
     }
 
-
-
-    //jest używana
 
     @Transactional
     @PutMapping("update/one")

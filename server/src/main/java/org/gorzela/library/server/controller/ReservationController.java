@@ -28,8 +28,6 @@ public class ReservationController {
         return ResponseEntity.ok(list);
     }
 
-//jest uzywana
-
     @Transactional
     @DeleteMapping(value = "/deleteById", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteById(Long id){
@@ -61,7 +59,7 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
-    @GetMapping("get/byReaderId")                                                              //jest wykonywana
+    @GetMapping("get/byReaderId")
     public ResponseEntity<Reservation[]> getByReaderId(Long readerId) {
 
         ArrayList<Reservation> reservations = reservationRepository.getByReaderId(readerId);
@@ -75,7 +73,7 @@ public class ReservationController {
 
     }
 
-    @GetMapping(value = "get/byBookAndCancelDate")                                                          //uzywana
+    @GetMapping(value = "get/byBookAndCancelDate")
     public ResponseEntity<ArrayList<Reservation>> getByBookAndReturnDate(Long bookId) {
 
         Book book = new Book();

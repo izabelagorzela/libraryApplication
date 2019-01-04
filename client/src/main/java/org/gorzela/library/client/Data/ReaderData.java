@@ -46,7 +46,6 @@ public class ReaderData {
     @Autowired
     LibraryDate libraryDate;
 
-
     public boolean setReservationData() throws URISyntaxException {
 
         ResponseEntity<Reservation[]> entity;
@@ -64,8 +63,8 @@ public class ReaderData {
         }
 
         if (entity.getStatusCode() == HttpStatus.OK) {
-            Reservation[] forNow = entity.getBody();
-            readerFormController.setReservationData(forNow);
+            Reservation[] reservationsByReaderId = entity.getBody();
+            readerFormController.setReservationData(reservationsByReaderId);
             return true;
         }
 
@@ -90,8 +89,8 @@ public class ReaderData {
         }
 
         if (entity.getStatusCode() == HttpStatus.OK) {
-            Loan[] forNow = entity.getBody();
-            readerFormController.setLoanData(forNow);
+            Loan[] loansByReaderAndReturnDate = entity.getBody();
+            readerFormController.setLoanData(loansByReaderAndReturnDate);
             return true;
         }
 
